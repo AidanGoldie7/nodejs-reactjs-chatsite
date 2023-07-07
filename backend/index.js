@@ -10,6 +10,8 @@ app.use(express.json());
 // Enable Cross-Origin Resource Sharing (CORS) for all origins.
 app.use(cors({ origin: true }));
 
+
+//import axios library for making HTTP requests
 const axios = require("axios");
 
 //Sets up a POST route for "/authenticate" path.
@@ -18,9 +20,10 @@ app.post("/authenticate", async (req, res) => {
     const { username } = req.body;
     
     try{
+        //Makes a PUT request to the specified URL using Axios.
         const r = await axios.put(
             "https://api.chatengine.io/users/",
-            //pass in all required data that this endpoint needs
+            //pass in all required data that this PUT request needs
             { username: username, secret: username, first_name: username },
             //create headers to authenticate the API call
             { headers: { "Private-Key": "26ee3b96-a1a7-4131-9dbd-a5765cee5ed3" } }
